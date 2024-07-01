@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container" >
+   <div class="row">
+      <div class="col-md-6">
+          <div class="card shadow">
+             <div class="card-header">Statistic</div>
+             <div class="card-body">
+                 <div class="row">
+                     <div class="col-md-4">
+                        <div class="card shadow">
+                           <div class="card-body">
+                              <h5>Total</h5>
+                              <p class="text-center">{{ total }}</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="card shadow">
+                           <div class="card-body">
+                                <h5>Complete</h5>
+                                <p class="text-center">{{ com_todo }}</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="card shadow">
+                           <div class="card-body">
+                              <h5>Incomplete</h5>
+                              <p class="text-center">{{ total - com_todo }}</p>
+                           </div>
+                        </div>
+                     </div>
+                 </div>
+             </div>
+          </div>
+      </div>
+      <div class="col-md-6">
+         <div class="card shadow">
+            <div class="card-header">To Do</div>
+            <div class="card-body">
+               <form action="{{ url_for('add') }}" method="post">
+                  <div class="mb-3">
+                     <label for="title" class="form-label">Title</label>
+                     <input type="text" class="form-control" id="title" name="title" placeholder="Add more...">
+                  </div>
+                  <button class="btn btn-primary btn-sm" type="submit">Add</button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+   {% for todo in todos %}
+   <div class="card mt-3 shadow">
+      <div class="card-body">
+         <h5>{{ loop.index }}. {{ todo.title }}</h5>
+         <span class="badge {% if todo.status %}bg-success{% else %}bg-secondary{% endif %}">
+             {{ 'Complete' if todo.status else 'Incomplete' }}
+         </span>
+         <a class="btn btn-info btn-sm" href="{{ url_for('update', id=todo.id) }}">Update</a>
+         <a class="btn btn-danger btn-sm" href="{{ url_for('delete', id=todo.id) }}">Delete</a>
+      </div>
+   </div>
+   {% endfor %}
+</div>
+{% endblock %}
+{% block title %} Home {% endblock %}
