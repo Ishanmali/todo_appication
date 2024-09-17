@@ -1,80 +1,18 @@
-{% block title %}Registration Form{% endblock %}
-{% block content %}
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-9">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
-    <style>
-        body {
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 120vh;
-            margin: 0;
-            padding-top: 90px;
-        }
-
-        .register-form {
-            background-color: #000000d5;
-            color: #fff;
-            padding: 20px;
-            border-radius: 50px;
-            width: 400px;
-            height: 520px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .register-form h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .register-form .form-group {
-            margin-bottom: 15px;
-        }
-
-        .register-form .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .register-form .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 10px;
-        }
-
-        .register-form .submit-btn {
-            background-color: #28a745;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            width: 100%;
-            cursor: pointer;
-        }
-
-        .register-form .submit-btn:hover {
-            background-color: #218838;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
   </head>
   <body>
-    <div class="overlay">
+    <div class="overlay"> 
         <div class="register-form">
             <h2>Registration</h2>
-            <form action="{{ url_for('register') }}" method="POST">
+            <form action="" method="POST">
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="name">Username</label>
                     <input type="text" id="name" name="name" placeholder="Username" required>
                 </div>
                 <div class="form-group">
@@ -83,10 +21,10 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="Password" name="Password" placeholder="Password" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
                 </div>
                 <div class="form-group">
-                    <label for="confirm_password">Confirm Password</label>
+                    <label for="password2">Confirm Password</label>
                     <input type="password" id="password2" name="password2" placeholder="Enter again" required>
                 </div>
                 <button type="submit" class="submit-btn">Submit</button>
@@ -95,4 +33,4 @@
     </div>
   </body>
 </html>
-{% endblock %}
+

@@ -17,19 +17,19 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #a5a3a3a6;
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
 }
 .register-form {
-    background-color: #f5f4f4da;
-    color: #080808;
+    background-color: #000000d5;
+    color: #fff;
     padding: 20px;
     border-radius: 50px;
     width: 400px;
-    box-shadow: 0 0 10px rgb(0, 0, 0);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
 .register-form h2 {
     text-align: center;
@@ -45,8 +45,10 @@ body {
 .register-form .form-group input {
     width: 100%;
     padding: 10px;
-    border: none;
-    border-radius: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff
 }
 .register-form .form-group input::placeholder {
     color: #888484;
@@ -108,4 +110,4 @@ body {
 }
 .divider:not(:empty)::after {
     margin-left: .25em;
-}
+}                                            

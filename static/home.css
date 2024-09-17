@@ -1,0 +1,161 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+/* Navigation */
+nav {
+    background-color: #ad0f6b;
+    padding: 15px 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin-right: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main container */
+.container {
+    margin-top: 30px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Card Styling */
+.card {
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.card-header {
+    background-color: #ad0f6b;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Statistics Section */
+.statistic-card h5, .todo-card h5 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.statistic-card p {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+/* Layout for statistics and todo */
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.col-md-6 {
+    flex: 0 0 48%;
+}
+
+.todo-card {
+    background-color: #f8f9fa;
+    padding: 15px;
+}
+
+/* Button Styling */
+button, .btn {
+    background-color: #ad0f6b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    background-color: #8c084f;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+/* Badge Styling */
+.badge {
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.bg-success {
+    background-color: #28a745;
+}
+
+.bg-secondary {
+    background-color: #6c757d;
+}
+
+/* Form Styling */
+input[type="text"], .form-control {
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+input[type="text"]::placeholder {
+    color: #999;
+}
+
+/* Update/Delete Buttons */
+a {
+    text-decoration: none;
+    color: #ad0f6b;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Improved Flex Layout */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .col-md-6 {
+        width: 100%;
+    }
+}

@@ -91,7 +91,8 @@ def register():
         Password = request.form['Password']
         password2 = request.form['password2']
 
-        existing_user = register.query.filter_by(email=email).first()
+        
+        existing_user = User.query.filter_by(email=email).first()
         if existing_user:
             flash('Email is already used', category='error')
         elif Password != password2:
@@ -104,7 +105,6 @@ def register():
             db.session.commit()
         return redirect(url_for('login'))
 
-        
     return render_template('register.html')
 
 if __name__ == '__main__':
