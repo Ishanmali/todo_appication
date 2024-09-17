@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, session
+from flask import Flask, render_template, redirect, url_for,flash, request, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import bcrypt
@@ -89,10 +89,22 @@ def register():
         name = request.form['name']
         email = request.form['email']
         Password = request.form['Password']
-        new_user = User(name=name, email=email, Password=Password)
-        db.session.add(new_user)
-        db.session.commit()
+        password2 = request.form['password2']
+
+        existing_user = register.query.filter_by(email=email).first()
+        if existing_user:
+            flash('Email is already used', category='error')
+        elif Password != password2:
+            flash('Passwords do not match!', category='error')
+        elif len(Password) < 5:
+            flash('Password must have a minimum of 5 characters', category='error')
+        else:
+            new_user = User(name=name, email=email, Password=Password)
+            db.session.add(new_user)
+            db.session.commit()
         return redirect(url_for('login'))
+
+        
     return render_template('register.html')
 
 if __name__ == '__main__':
