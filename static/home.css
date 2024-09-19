@@ -9,13 +9,13 @@ body {
 
 /* Navigation */
 nav {
-    background-color: #ad0f6b;
+    background-color: #2aa792;
     padding: 15px 0;
     text-align: center;
 }
 
 nav a {
-    color: white;
+    color: rgb(9, 187, 39);
     margin-right: 20px;
     font-size: 16px;
     font-weight: bold;

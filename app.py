@@ -1,7 +1,8 @@
-from flask import Flask, render_template, redirect, url_for, flash, request, session
+from flask import Flask, render_template, redirect, url_for, request, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import bcrypt
+from functools import wraps
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///C:/Users/Nethmi/Desktop/flask project/todo.db'
@@ -35,6 +36,16 @@ class User(db.Model):
         return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
 
 
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'email' not in session:
+            return redirect(url_for('login'))  # Redirect to login page if not logged in
+        return f(*args, **kwargs)
+    return decorated_function
+
+
 @app.route("/")
 def home():
     todos = Todo.query.all()
@@ -44,15 +55,17 @@ def home():
 
 
 @app.route("/add", methods=["POST"])
+@login_required  # Require login to add tasks
 def add():
     title = request.form.get('title')
-    new_todo = Todo(title=title)
+    new_todo = Todo(title=title, name=session['email'])
     db.session.add(new_todo)
     db.session.commit()
     return redirect(url_for('home'))
 
 
 @app.route("/delete/<int:id>")
+@login_required  # Require login to delete tasks
 def delete(id):
     todo = Todo.query.get_or_404(id)
     db.session.delete(todo)
@@ -61,6 +74,7 @@ def delete(id):
 
 
 @app.route("/update/<int:id>")
+@login_required  # Require login to update tasks
 def update(id):
     todo = Todo.query.get_or_404(id)
     todo.status = not todo.status
@@ -85,8 +99,7 @@ def login():
             session['password'] = user.password
             return redirect(url_for('home'))
         else:
-            flash('Invalid email or password', category='error')
-            return render_template('login.html', error='Invalid user')
+            return render_template('login.html', error='Invalid email or password')
 
     return render_template('login.html')
 
@@ -101,16 +114,15 @@ def register():
 
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
-            flash('Email is already used', category='error')
+            return render_template('register.html', error='Email is already used')
         elif password != password2:
-            flash('Passwords do not match', category='error')
+            return render_template('register.html', error='Passwords do not match')
         elif len(password) < 5:
-            flash('Password must be at least 5 characters long', category='error')
+            return render_template('register.html', error='Password must be at least 5 characters long')
         else:
             new_user = User(name=name, email=email, password=password)
             db.session.add(new_user)
             db.session.commit()
-            flash('Registration successful. Please log in.', category='success')
             return redirect(url_for('login'))
 
     return render_template('register.html')
@@ -120,3 +132,4 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True)
+

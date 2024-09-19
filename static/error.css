@@ -1,0 +1,13 @@
+.error-message-container {
+    position: absolute;
+    top: 10px; /* Position the error message near the top of the page */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* Ensure the error message is above the overlay */
+    width: 80%; /* Set a width that works well with your layout */
+}
+
+.overlay {
+    position: relative;
+    z-index: 1; /* Ensure the overlay stays below the error message */
+}
