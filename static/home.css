@@ -38,8 +38,8 @@ nav a:hover {
 /* Card Styling */
 .card {
     border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 10px rgb(7, 7, 7);
     margin-bottom: 20px;
     padding: 15px;
 }
@@ -118,11 +118,11 @@ button:hover, .btn:hover {
 }
 
 .bg-success {
-    background-color: #28a745;
+    background-color: #50b369;
 }
 
 .bg-secondary {
-    background-color: #6c757d;
+    background-color: #879635;
 }
 
 /* Form Styling */
