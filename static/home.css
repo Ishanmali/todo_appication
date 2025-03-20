@@ -45,7 +45,7 @@ nav a:hover {
 }
 
 .card-header {
-    background-color: #ad0f6b;
+    background-color: #0f9aad;
     color: white;
     padding: 10px 0;
     text-align: center;
@@ -88,7 +88,7 @@ nav a:hover {
 
 /* Button Styling */
 button, .btn {
-    background-color: #ad0f6b;
+    background-color: #0f9aad;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -98,7 +98,7 @@ button, .btn {
 }
 
 button:hover, .btn:hover {
-    background-color: #8c084f;
+    background-color: #0f9aad;
 }
 
 .btn-info {

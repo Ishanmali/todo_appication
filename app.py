@@ -5,8 +5,8 @@ import bcrypt
 from functools import wraps
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///C:/Users/Nethmi/Desktop/flask project/todo.db'
-app.config["SQLALCHEMY_BINDS"] = {'login': 'sqlite:///C:/Users/Nethmi/Desktop/flask project/log.db'}
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///C:/Users/LENOVO/Desktop/my projects/todo_appication/data bases/todo.db'
+app.config["SQLALCHEMY_BINDS"] = {'login': 'sqlite:///C:/Users/LENOVO/Desktop/my projects/todo_appication/data bases/log.db'}
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'jbjbvjhjdhvk jvlzkn'
 
