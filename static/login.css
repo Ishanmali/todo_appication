@@ -58,7 +58,7 @@ body {
 }
 
 .register-form .submit-btn {
-    background-color:  #ad0f6bc7;
+    background-color:  #0f9aad;
     color: #fff;
     padding: 10px;
     border: none;
@@ -67,7 +67,7 @@ body {
     cursor: pointer;
 }
 .register-form .submit-btn:hover {
-    background-color:  #ad0f6bc7;
+    background-color:  #3e7b83;
 }
 .google-btn {
     background-color: #af5d8d9c;
