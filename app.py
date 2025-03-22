@@ -5,8 +5,10 @@ import bcrypt
 from functools import wraps
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///C:/Users/LENOVO/Desktop/my projects/todo_appication/data bases/todo.db'
-app.config["SQLALCHEMY_BINDS"] = {'login': 'sqlite:///C:/Users/LENOVO/Desktop/my projects/todo_appication/data bases/log.db'}
+
+# Update the SQLALCHEMY_DATABASE_URI to use MySQL
+app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+mysqlconnector://root:rajarata129@localhost/todo_db'
+app.config["SQLALCHEMY_BINDS"] = {'login': 'mysql+mysqlconnector://root:rajarata129@localhost/login_db'}
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'jbjbvjhjdhvk jvlzkn'
 
@@ -18,7 +20,6 @@ class Todo(db.Model):
     title = db.Column(db.String(200))
     status = db.Column(db.Boolean, default=False)
     name = db.Column(db.String(100))
-
 
 class User(db.Model):
     __bind_key__ = "login"
@@ -35,8 +36,6 @@ class User(db.Model):
     def check_password(self, password):
         return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
 
-
-
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -45,14 +44,12 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
-
 @app.route("/")
 def home():
     todos = Todo.query.all()
     total = Todo.query.count()
     com_todo = Todo.query.filter_by(status=True).count()
     return render_template("home.html", todos=todos, total=total, com_todo=com_todo)
-
 
 @app.route("/add", methods=["POST"])
 @login_required  # Require login to add tasks
@@ -63,7 +60,6 @@ def add():
     db.session.commit()
     return redirect(url_for('home'))
 
-
 @app.route("/delete/<int:id>")
 @login_required  # Require login to delete tasks
 def delete(id):
@@ -71,7 +67,6 @@ def delete(id):
     db.session.delete(todo)
     db.session.commit()
     return redirect(url_for('home'))
-
 
 @app.route("/update/<int:id>")
 @login_required  # Require login to update tasks
@@ -81,11 +76,9 @@ def update(id):
     db.session.commit()
     return redirect(url_for('home'))
 
-
 @app.route("/about")
 def about():
     return render_template("about.html")
-
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -102,7 +95,6 @@ def login():
             return render_template('login.html', error='Invalid email or password')
 
     return render_template('login.html')
-
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -127,9 +119,7 @@ def register():
 
     return render_template('register.html')
 
-
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True)
-
